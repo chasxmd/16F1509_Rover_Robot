@@ -27,7 +27,7 @@ void usrt_init (void)
   TRISA4=0;         // out
   TRISA5=1;         // in
   TRISB5=1;         // in
-  TRISB7=0;         // out
+  TRISB7=0;         // out TX-->RX of Pololu Motor Controllers
   //APFCON=0x42;    // RA0/1 serial for alternate PIC selection
   
   IRCF3=1;          // 4 MHz internal clock
