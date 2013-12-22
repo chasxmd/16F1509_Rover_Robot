@@ -22,13 +22,13 @@ __CONFIG (LVP_OFF & BOREN_ON & STVREN_ON & WRT_OFF);
 
 void usrt_init (void)
 {
-  TRISA5=1; // in
-  TRISA1=1; // in
-  TRISA0=0; // out
-  TRISA4=0; //out
-  APFCON=0x42;   //RA0/1 serial
+  TRISA5=1;         // in
+  TRISA1=1;         // in
+  TRISA0=0;         // out
+  TRISA4=0;         // out
+  //APFCON=0x42;    // RA0/1 serial for alternate PIC selection
   
-  IRCF3=1;//4MHz clock speed
+  IRCF3=1;          // 4 MHz internal clock
   IRCF2=1;
   IRCF1=0;
   IRCF0=1;
@@ -36,12 +36,12 @@ void usrt_init (void)
   CSRC=0;   // clock Source Select bit not used
   TX9=0;    // 9-bit Transmit Enable bit
   TXEN=1;   // Transmit Enable bit
-  SYNC=0;   //1 = Synchronous mode 0 = Asynchronous mode
-  SENDB=0;  //Send Break Character bit 1 = Send Sync Break on next transmission (cleared by hardware upon completion)
-            //0 = Sync Break transmission completed
-  BRGH=0;   //High Baud Rate Select bit
-  TRMT=1;   //Transmit Shift Register Status bit 1 = TSR empty 0 = TSR full
-  TX9D=0;   //ninth bit of Transmit Data
+  SYNC=0;   // 1 = Synchronous mode 0 = Asynchronous mode
+  SENDB=0;  // Send Break Character bit 1 = Send Sync Break on next transmission (cleared by hardware upon completion)
+            // 0 = Sync Break transmission completed
+  BRGH=0;   // High Baud Rate Select bit
+  TRMT=1;   // Transmit Shift Register Status bit 1 = TSR empty 0 = TSR full
+  TX9D=0;   // ninth bit of Transmit Data
 
   SPEN=1;   // Serial Port Enable bit
   RX9=0;    // 8bit
@@ -53,9 +53,9 @@ void usrt_init (void)
   RX9D=0;   // ninth bit of Received Data
 
 
-BRGH=1;             // higher baud rate
-SPBRGL=0b00011001;  //.25 baud rate 9600
-SPBRGH=0b00000000;
+  BRGH=1;             // higher baud rate
+  SPBRGL=0b00011001;  //.25 baud rate 9600
+  SPBRGH=0b00000000;
 
 }//
 
@@ -179,7 +179,7 @@ while(!TRMT)    // until empty
 M0_FWD_HALF();  //test M0 drive forward
 M1_FWD_HALF();  //test M1 drive forward
 
-while(1) //loop forever
+while(1)        //loop forever
 {
 }
 
