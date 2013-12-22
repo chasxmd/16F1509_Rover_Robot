@@ -22,10 +22,12 @@ __CONFIG (LVP_OFF & BOREN_ON & STVREN_ON & WRT_OFF);
 
 void usrt_init (void)
 {
-  TRISA5=1;         // in
   TRISA1=1;         // in
   TRISA0=0;         // out
   TRISA4=0;         // out
+  TRISA5=1;         // in
+  TRISB5=1;         // in
+  TRISB7=0;         // out
   //APFCON=0x42;    // RA0/1 serial for alternate PIC selection
   
   IRCF3=1;          // 4 MHz internal clock
