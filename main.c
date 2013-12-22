@@ -1,18 +1,21 @@
 /*
  * File:   main.c
- * Author: Charles Douvier
+ * Author: C Douvier, @chasxmd
  *
  * Created on December 21, 2013, 10:24 PM
- * Robot Test
- * Version 0.1  Motor Commands
+ * Two wheel PIC-based Robot
+ * Version 0.01  Motor Commands
+ *
  */
 
 #include <htc.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 __CONFIG (CLKOUTEN_OFF & FCMEN_ON & IESO_OFF & BOREN_OFF & CP_OFF & MCLRE_ON & PWRTE_ON & WDTE_OFF & FOSC_INTOSC);//XT
 __CONFIG (LVP_OFF & BOREN_ON & STVREN_ON & WRT_OFF);
+
 #define _XTAL_FREQ 4000000
 
 #define test_input RA5
@@ -58,40 +61,40 @@ SPBRGH=0b00000000;
 
 void M0_FWD_FULL(void){
     TXREG=0x88;     //M0 foward
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
-    TXREG=0x4F;     // half speed
-    while(!TRMT)    // until empty.
+    TXREG=0x4F;     // full speed
+    while(!TRMT)    // until empty
     {
     }
 }
 
 void M0_FWD_HALF(void){
     TXREG=0x88;     //M0 foward
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
     TXREG=0x3F;     // half speed
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
 }
 
 void M0_FWD_LOW(void){
     TXREG=0x88;     //M0 foward
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
-    TXREG=0x2F;     // half speed
-    while(!TRMT)    // until empty.
+    TXREG=0x2F;     // low speed
+    while(!TRMT)    // until empty
     {
     }
 }
 
 void M0_STOP(void){
     TXREG=0x86;     //M0 STOP
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
 
@@ -99,51 +102,51 @@ void M0_STOP(void){
 
 void M0_REV_HALF(void){
     TXREG=0x8A;     //M0 reverse
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
     TXREG=0x3F;     // half speed
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
 }
 
 void M1_FWD_FULL(void){
     TXREG=0x8C;     //M1 foward
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
-    TXREG=0x4F;     // half speed
-    while(!TRMT)    // until empty.
+    TXREG=0x4F;     // full speed
+    while(!TRMT)    // until empty
     {
     }
 }
 
 void M1_FWD_HALF(void){
     TXREG=0x8C;     //M1 foward
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
     TXREG=0x3F;     // half speed
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
 }
 
 void M1_FWD_LOW(void){
     TXREG=0x8C;     //M1 foward
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
-    TXREG=0x2F;     // half speed
-    while(!TRMT)    // until empty.
+    TXREG=0x2F;     // low speed
+    while(!TRMT)    // until empty
     {
     }
 }
 
 void M1_STOP(void){
     TXREG=0x87;     //M1 STOP
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
 
@@ -151,11 +154,11 @@ void M1_STOP(void){
 
 void M1_REV_HALF(void){
     TXREG=0x8E;     //M1 reverse
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
     TXREG=0x3F;     // half speed
-    while(!TRMT)    // until empty.
+    while(!TRMT)    // until empty
     {
     }
 }
@@ -163,16 +166,18 @@ void M1_REV_HALF(void){
 /*
  *
  */
+ 
 int main(int argc, char** argv) {
-usrt_init();
+  
+usrt_init();    //initialize PIC EUSART
 
 TXREG=0xAA;     //initialize motor driver
-while(!TRMT)    // until empty.
+while(!TRMT)    // until empty
 {
 }
 
-M0_FWD_HALF();  //M0 drive forward
-M1_FWD_HALF();  //M1 drive forward
+M0_FWD_HALF();  //test M0 drive forward
+M1_FWD_HALF();  //test M1 drive forward
 
 while(1) //loop forever
 {
